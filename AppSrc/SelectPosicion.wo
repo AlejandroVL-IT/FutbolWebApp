@@ -22,8 +22,8 @@ Object oSelectPosicion is a cWebView
     Object oposicion_DD is a cposicionDataDictionary
     End_Object 
 
-    Set Main_DD To oposicion_DD
-    Set Server  To oposicion_DD
+    Set Main_DD to oposicion_DD
+    Set Server  to oposicion_DD
 
 
     Object oList is a cWebList
@@ -37,15 +37,7 @@ Object oSelectPosicion is a cWebView
         Object oposicionNombre is a cWebColumn
             Entry_Item posicion.Nombre
             Set psCaption to "posicion.Nombre"
-            Set piWidth to 500
-            Set psCSSClass to "RowCaption"
-        End_Object 
-
-        Object oposicionID is a cWebColumn
-            Entry_Item posicion.ID
-            Set psCaption to "posicion.ID"
-            Set piWidth to 100
-            Set psCSSClass to "RowDetail"
+            Set piWidth to 621
         End_Object 
 
         Object oDetailButton is a cWebColumnButton
@@ -57,8 +49,7 @@ Object oSelectPosicion is a cWebView
             Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
             Set peAlign to alignRight
 
-// ToDo: Fill in the from-main Zoom view object name for navigate forward
-//            WebRegisterPath ntNavigateForward oZoomView
+            WebRegisterPath ntNavigateForward oZoomPosicion
 
             Procedure OnClick
                 Send NavigatePath
@@ -69,9 +60,10 @@ Object oSelectPosicion is a cWebView
             End_Procedure
 
         End_Object 
-
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-//        WebRegisterPath ntNavigateForward oSelectView
+        
+        /*Es independiente se relaciona con jugador a traves de la tabla intermedia 
+        jugadorposicion, asi que no tiene padres */
+        //WebRegisterPath ntNavigateForward oSelectview
 
         Procedure OnRowClick String sRowId
             tWebNavigateData NavigateData
@@ -79,9 +71,7 @@ Object oSelectPosicion is a cWebView
 
             Case Begin
                 Case (NavigateData.eNavigateType = nfFromParent)
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
-//                    Send NavigateForward of oSelectView Self
+                    //Send NavigateForward of oSelectView Self - No tiene padres
                     Case Break
 
                 Case (NavigateData.eNavigateType = nfFromChild)
@@ -93,9 +83,7 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
                     Case Break
 
                 Case Else // must be nfUndefined
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
-//                    Send NavigateForward of oSelectView Self
+                    //Send NavigateForward of oSelectView Self - No tiene padres
 
             Case End
         End_Procedure
@@ -122,8 +110,7 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
             Set psCSSClass to "WebClearMenuItem"
             Set psCaption to "New"
 
-// ToDo: Fill in the from-main Zoom view object name for navigate forward
-//            WebRegisterPath ntNavigateForward oZoomView
+            WebRegisterPath ntNavigateForward oZoomPosicion
 
             Procedure OnClick
                 Send NavigatePath

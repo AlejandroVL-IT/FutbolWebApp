@@ -6,7 +6,6 @@ Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
-Use cWebGroup.pkg
 Use cWebForm.pkg
 
 Use cligaDataDictionary.dd
@@ -23,60 +22,36 @@ Object oZoomLiga is a cWebView
     Object oliga_DD is a cligaDataDictionary
     End_Object 
 
-    Set Main_DD To oliga_DD
-    Set Server  To oliga_DD
+    Set Main_DD to oliga_DD
+    Set Server  to oliga_DD
 
 
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
 
-        Object oWebGroup1 is a cWebGroup
-            Set piColumnSpan to 0
+        Object oligaNombre is a cWebForm
+            Entry_Item liga.Nombre
+            Set piColumnSpan to 12
             Set piColumnIndex to 0
-            Set piColumnCount to 12
-            Set psCaption to "Liga:"
-            WebSetResponsive piColumnCount rmMobile to 4
+            Set peLabelPosition to lpTop
+            Set psLabel to "Nombre de la Liga"
+        End_Object 
 
-            Object oligaNombre is a cWebForm
-                Entry_Item liga.Nombre
-                Set piColumnSpan to 12
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "Nombre"
-            End_Object 
+        Object oligaPais is a cWebForm
+            Entry_Item liga.Pais
+            Set piColumnSpan to 10
+            Set piColumnIndex to 0
+            Set peLabelPosition to lpTop
+            Set psLabel to "¿A qué país pertenece esa Liga?"
+        End_Object 
 
-            Object oligaPais is a cWebForm
-                Entry_Item liga.Pais
-                Set piColumnSpan to 8
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "Pais"
-            End_Object 
-
-            Object oligaEquipos is a cWebForm
-                Entry_Item liga.Equipos
-                Set piColumnSpan to 2
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "Equipos"
-            End_Object 
-
-            Object oligaEquiposMax is a cWebForm
-                Entry_Item liga.EquiposMax
-                Set piColumnSpan to 2
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "EquiposMax"
-            End_Object 
-
-            Object oligaID is a cWebForm
-                Entry_Item liga.ID
-                Set piColumnSpan to 2
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "ID"
-            End_Object 
+        Object oligaEquipos is a cWebForm
+            Entry_Item liga.Equipos
+            Set piColumnSpan to 2
+            Set piColumnIndex to 0
+            Set peLabelPosition to lpTop
+            Set psLabel to "¿Cuántos equipos tiene la liga?"
         End_Object 
     End_Object 
 

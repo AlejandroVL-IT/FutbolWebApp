@@ -6,7 +6,6 @@ Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
-Use cWebGroup.pkg
 Use cWebForm.pkg
 
 Use cligaDataDictionary.dd
@@ -25,95 +24,55 @@ Object oZoomEquipo is a cWebView
     End_Object 
 
     Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server To oliga_DD
+        Set DDO_Server to oliga_DD
     End_Object 
 
-    Set Main_DD To oequipo_DD
-    Set Server  To oequipo_DD
+    Set Main_DD to oequipo_DD
+    Set Server  to oequipo_DD
 
 
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
 
-        Object oWebGroup1 is a cWebGroup
-            Set piColumnSpan to 0
+        Object oequipoNombre is a cWebForm
+            Entry_Item equipo.Nombre
+            Set piColumnSpan to 12
             Set piColumnIndex to 0
-            Set piColumnCount to 12
-            Set psCaption to "Equipo:"
-            WebSetResponsive piColumnCount rmMobile to 4
-
-            Object oequipoNombre is a cWebForm
-                Entry_Item equipo.Nombre
-                Set piColumnSpan to 12
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "Nombre"
-            End_Object 
-
-            Object oequipoID is a cWebForm
-                Entry_Item equipo.ID
-                Set piColumnSpan to 2
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "ID"
-            End_Object 
+            Set peLabelPosition to lpTop
+            Set psLabel to "Nombre del Nuevo equipo"
         End_Object 
 
-        Object oWebGroup2 is a cWebGroup
-            Set piColumnSpan to 0
+        Object oligaNombre is a cWebForm
+            Entry_Item liga.Nombre
+            Set piColumnSpan to 12
             Set piColumnIndex to 0
-            Set piColumnCount to 12
-            Set psCaption to "Liga:"
-            WebSetResponsive piColumnCount rmMobile to 4
+            Set peLabelPosition to lpTop
+            Set psLabel to "Nombre de la Liga a la que pertenece ese equipo"
+            Set pbPromptButton to True
+            
+            // Liga es padre de equipo
+            WebRegisterPath ntNavigateForward oSelectLiga
 
-            Object oligaNombre is a cWebForm
-                Entry_Item liga.Nombre
-                Set piColumnSpan to 12
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "Nombre"
-                Set pbPromptButton to True
+            Procedure OnPrompt
+                Send NavigatePath
+            End_Procedure
+        End_Object 
 
-// ToDo: Fill in the from-child parent Select view object name for navigate forward
-//                WebRegisterPath ntNavigateForward oSelectView
+        Object oligaPais is a cWebForm
+            Entry_Item liga.Pais
+            Set piColumnSpan to 10
+            Set piColumnIndex to 0
+            Set peLabelPosition to lpTop
+            Set psLabel to "Pais"
+            Set pbPromptButton to True
+            
+            // Liga es padre de equipo
+            WebRegisterPath ntNavigateForward oSelectLiga
 
-                Procedure OnPrompt
-                    Send NavigatePath
-                End_Procedure
-            End_Object 
-
-            Object oligaPais is a cWebForm
-                Entry_Item liga.Pais
-                Set piColumnSpan to 9
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "Pais"
-                Set pbPromptButton to True
-
-// ToDo: Fill in the from-child parent Select view object name for navigate forward
-//                WebRegisterPath ntNavigateForward oSelectView
-
-                Procedure OnPrompt
-                    Send NavigatePath
-                End_Procedure
-            End_Object 
-
-            Object oligaID is a cWebForm
-                Entry_Item liga.ID
-                Set piColumnSpan to 2
-                Set piColumnIndex to 0
-                Set peLabelPosition to lpTop
-                Set psLabel to "ID"
-                Set pbPromptButton to True
-
-// ToDo: Fill in the from-child parent Select view object name for navigate forward
-//                WebRegisterPath ntNavigateForward oSelectView
-
-                Procedure OnPrompt
-                    Send NavigatePath
-                End_Procedure
-            End_Object 
+            Procedure OnPrompt
+                Send NavigatePath
+            End_Procedure
         End_Object 
     End_Object 
 
